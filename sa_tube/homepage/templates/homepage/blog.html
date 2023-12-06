@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Tube Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.4.0/dist/full.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#111121] min-h-screen bg-[url('star-bg.svg')]">
+    <div class="max-w-[800px] text-white mx-auto pt-32 px-5">
+        <div class="collapse collapse-plus bg-[#161629] mb-4">
+            <input type="radio" name="my-accordion-3">
+            <div class="collapse-title text-lg font-medium">
+                <p>Discuss the scope of var, let, and const!</p>
+            </div>
+            <div class="collapse-content">
+                <p class="text-base font-bold text-[#c51b46]">VAR :</p>
+                <ul class="text-sm list-disc ml-4 my-4">
+                    <li>
+                        <span class="font-bold text-[#4BA2D3]">Function Scope : </span>
+                        <span>Variables declared with var are function-scoped. They are only accessible within the
+                            function where they are defined.</span>
+                    </li>
+                    <li>
+                        <span class="font-bold text-[#4BA2D3]">Hoisting : </span>
+                        <span>Variables declared with 'var' are hoisted to the top of their containing function or the
+                            global scope. This allows you to
+                            use them before they are declared, but they will be initialized with undefined until their
+                            actual declaration.</span>
+                    </li>
+                </ul>
+                <p class="text-base font-bold text-[#c51b46]">LET :</p>
+                <ul class="text-sm list-disc ml-4 my-4">
+                    <li>
+                        <span class="font-bold text-[#4BA2D3]">Block Scope : </span>
+                        <span>Variables declared with 'let' are limited to the block, statement, or expression where
+                            they are defined.</span>
+                    </li>
+                    <li>
+                        <span class="font-bold text-[#4BA2D3]"> No Hoisting : </span>
+                        <span>Unlike 'var', variables declared with 'let' are hoisted to the top of their block but are
+                            not initialized. They remain in the "temporal dead zone" until the actual
+                            declaration.</span>
+                    </li>
+                </ul>
+                <p class="text-base font-bold text-[#c51b46]">CONST :</p>
+
+                <ul class="text-sm list-disc ml-4 my-4">
+                    <li>
+                        <span>Variables declared with 'const' are accessible only within the block where they are
+                            defined, and they cannot be reassigned after initialization. While 'const' provides
+                            block-scoping like 'let', it also enforces immutability for the variable itself, meaning you
+                            can't reassign a new value to it once it's been declared.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="collapse collapse-plus bg-[#161629] mb-4">
+            <input type="radio" name="my-accordion-3">
+            <div class="collapse-title text-lg font-medium">
+                Tell us the use cases of null and undefined!
+            </div>
+            <div class="collapse-content">
+                <p class="text-base font-bold text-[#c51b46]">null :</p>
+                <ul class="text-sm list-disc ml-4 my-4">
+                    <li>Represents the intentional absence of any object value or value in general.</li>
+                    <li>Used as a placeholder or initial value that might be assigned a value later.</li>
+                    <li>Returned by functions or methods to indicate the absence of a meaningful result.</li>
+                </ul>
+                <p class="text-base font-bold text-[#c51b46]">undefined :</p>
+                <ul class="text-sm list-disc ml-4 my-4">
+                    <li>Automatically assigned to variables that have been declared but not assigned a value.</li>
+                    <li>Indicates the default value for function parameters and variables.</li>
+                    <li>Results from attempting to access properties in objects or elements in arrays that do not exist.
+                    </li>
+                    <li>Returned by functions that do not explicitly return a value.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="collapse collapse-plus bg-[#161629] mb-4">
+            <input type="radio" name="my-accordion-3">
+            <div class="collapse-title text-lg font-medium">
+                What do you mean by REST API?
+            </div>
+            <div class="collapse-content">
+                <p class="font-bold text-[#4BA2D3] mb-4">REST API (Representational State Transfer - Application
+                    Programming Interface):</p>
+                <ul class="text-sm list-disc ml-4 my-4">
+                    <li>A set of rules and conventions for building and interacting with web services.</li>
+                    <li>Adheres to the principles of the REST architectural style.</li>
+                    <li>Enables communication and data exchange between client and server applications over the web.
+                    </li>
+                    <li>Uses standard HTTP methods (GET, POST, PUT, DELETE) for operations on resources.</li>
+                    <li>Emphasizes stateless communication and resource-based interactions.</li>
+                    <li>RESTful web services follow these principles to create scalable, maintainable, and interoperable
+                        systems on the World Wide Web.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex mt-4 justify-center">
+            <a class="bg-[#161629] px-3 rounded-md py-2 text-center" href="/">Back to home</a>
+        </div>
+    </div>
+
+    <script src="/js/script.js" type="script"></script>
+</body>
+
+</html>

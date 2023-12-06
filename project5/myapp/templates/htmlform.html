@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container bg-light mt-2 p-5" style="width:50%; height:500px; margin: auto">
+    <h3>Movie Rating Form</h3>
+    <form method="post" action="{% url "about" %}" class="">
+        {% csrf_token %}
+    <div class="mb-3">
+        <label for="exampleInputName" class="form-label">Enter your name</label>
+        <input type="name" class="form-control" id="exampleInputName" aria-describedby="nameHelp" name="username">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+    </div>
+    <div class="mb-3">
+        <select class="form-select" aria-label="Default select example" name="country">
+            <option selected>Select your Country</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="India">India</option>
+            <option value="Pakistan">Pakistan</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+</section>
+
+
+{% endblock content %}
