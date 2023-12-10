@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="container mt-5">
+        <h1 class="mb-4">Album List</h1>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Musician Name</th>
+                    <th>Email</th>
+                    <th>Album Rating</th>
+                    <th>Instrument Type</th>
+                    <th>Album Name</th>
+                    <th>Release Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for musician in data %}
+                    {% for album in musician.album_set.all %}
+                        <tr>
+                            <td>{{ album.id }}</td>
+                            <td>{{ musician }}</td>
+                            <td>{{ musician.email }}</td>
+                            <td>{{ album.rating }}</td>
+                            <td>{{ musician.instrument_type }}</td>
+                            <td>{{ album.album_name }}</td>
+                            <td>{{ album.release_date|date:"d-M-Y" }}</td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" href="{% url 'edit_album' album.id %}">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'delete_album' album.id %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+{% endblock %}
