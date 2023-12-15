@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+<div class="d-flex">
+    <h2>Hello {{user}} !</h2>
+    <a class="btn btn-outline-success mx-2 ms-auto mt-3" href="{% url "edit_profile" %}">Edit Profile</a>
+</div>
+<section class"">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                {% for post in data %}
+                <div class="col my-3 mt-5">
+                    <div class="shadow-lg p-3 card">
+                        <img src="{{post.image.url}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title border-dark pb-2 border-bottom">{{post.title | truncatechars:35}}</h5>
+                            <p class="card-text">{{post.content | truncatechars:200}}</p>
+                            <p>Author: <a style="text-decoration:none" href="#">
+                                {% if post.author.first_name or post.author.last_name %}
+                                    {{ post.author.first_name }} {{ post.author.last_name }}
+                                {% else %}
+                                    {{ post.author.username }}
+                                {% endif %}
+                            </a></p>
+                            <p>Category: 
+                                {% if post.category.all %}
+                                    {% for cat in post.category.all %}
+                                        <a style="text-decoration:none" href="{% url "category_wise_post" cat.slug %}">{{ cat.cat_name }}</a>
+                                        {% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    No categories
+                                {% endif %}
+                            </p>
+                            {% if user.is_authenticated %}
+                            <a href="{% url "edit_post" post.id %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url "delete_post" post.id %}" class="btn btn-danger">Delete</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content%}

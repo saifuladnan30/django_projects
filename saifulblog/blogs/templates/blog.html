@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+
+
+{% block content%}
+
+<div class="d-flex flex-wrap mt-5 mx-3">
+    <div class="col-2 border-success border-end">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{category}}" id="{{category.id}}">
+            <label class="form-check-label" for="{{category.id}}">
+                <a style="text-decoration: none" href="/">All</a>
+            </label>
+        </div>
+        {% for cat in category %}
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{category}}" id="{{cat.id}}">
+            <label class="form-check-label" for="{{cat.id}}">
+                <a style="text-decoration: none" href="{% url "category_wise_post" cat.slug %}">{{cat.cat_name}} </a>
+            </label>
+        </div>
+        {% endfor %}
+        
+    </div>
+    <div class="col-10">
+        <section class"">
+            <div class="container">
+            <small>{{data | length}} results found</small>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+                    {% for post in data %}
+                    <div class="col my-3">
+                        <div class="shadow-lg p-3 card">
+                            <img src="{{post.image.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title border-dark pb-2 border-bottom"><a style="text-decoration: none; color: black" href="{% url "post_details" post.id %}">{{post.title}}</a></h5>
+                                <p class="card-text">{{post.content | truncatechars:200}}</p>
+                                <p>Author: <a style="text-decoration:none" href="#">
+                                    {% if post.author.first_name or post.author.last_name %}
+                                        {{ post.author.first_name }} {{ post.author.last_name }}
+                                    {% else %}
+                                        {{ post.author.username }}
+                                    {% endif %}
+                                </a></p>
+                                <p>Category: 
+                                    {% if post.category.all %}
+                                        {% for cat in post.category.all %}
+                                            <a style="text-decoration:none" href="{% url "category_wise_post" cat.slug %}">{{ cat.cat_name }}</a>
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        No categories
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+{% endblock content%}

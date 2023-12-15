@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+<section class="container">
+    <div class="col my-3">
+        <div class="p-3">
+            <img src="{{post.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title pb-2">{{post.title}}</h5>
+                <p class="card-text">{{post.content}}</p>
+                <p>Author: <a style="text-decoration:none" href="#">
+                    {% if post.author.first_name or post.author.last_name %}
+                        {{ post.author.first_name }} {{ post.author.last_name }}
+                    {% else %}
+                        {{ post.author.username }}
+                    {% endif %}
+                    </a>
+                </p>
+                <p>Category: 
+                    {% if post.category.all %}
+                        {% for cat in post.category.all %}
+                            <a style="text-decoration:none" href="{% url "category_wise_post" cat.slug %}">{{ cat.cat_name }}</a>
+                            {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        No categories
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h5 class="p-3">Total comments: {{comments | length}}</h5>
+            {% for comment in comments %}
+        <div class="card m-2">
+            <div class="card-body">
+                <h6>{{comment.name}} <small>{{ comment.created_on_in_local_time }}</small></h6>
+                <p>{{comment.body}}</p>
+            </div>
+        </div>
+            {% endfor %}
+    </div>
+
+    <form method="post">
+        <h2>Add Comment</h2>
+        {% csrf_token %}
+        {{comment_form | crispy}}
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</section>
+
+
+{% endblock content%}
