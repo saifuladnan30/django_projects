@@ -15,18 +15,6 @@ def home(request):
 def profile(request):
     return render(request, 'profile.html')
     
-# @login_required
-# def update_profile(request):
-#         if request.method == 'POST':
-#             form = ChangeUserData(request.POST, instance=request.user)
-#             if form.is_valid():
-#                 form.save()
-#                 messages.success(request, 'Account Updated successfully')
-#                 return redirect('signin')
-#         else:
-#             form = ChangeUserData(instance=request.user)
-#         return render(request, 'update_profile.html', {'form':form})
-   
 
 def signup(request):
     if not request.user.is_authenticated:
